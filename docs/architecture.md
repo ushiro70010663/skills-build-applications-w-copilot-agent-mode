@@ -30,13 +30,13 @@ OctoFit Tracker is a three-tier application for a school fitness program. The st
 
 Record your plan here before editing code.
 
-- Presentation tier decision:
-- Logic tier decision:
-- Data tier decision:
-- Activity tracking approach:
-- Team management approach:
-- Leaderboard approach:
-- Workout suggestions approach:
+- Presentation tier decision: Build React route components that use the shared API client, keeping data fetching and rendering separate through loading, empty, success, and accessible error states.
+- Logic tier decision: Implement Express routes under `/api/*` and delegate validation and data operations to services, returning deliberate 4xx responses instead of leaking Mongoose cast errors.
+- Data tier decision: Define required Mongoose schemas for users, teams, activities, and workouts, and use the seed script for idempotent representative data in MongoDB.
+- Activity tracking approach: Validate ObjectIds and referenced users and teams before creation; calculate positive points from the submitted activity and store the submitted data with `points` and `occurredAt`.
+- Team management approach: Require a team name and mascot, default members to an empty array, and create or list team records without authentication.
+- Leaderboard approach: Aggregate activity points by team, sort totals descending, assign 1-based ranks, and return `teamName`, `totalPoints`, and `rank`.
+- Workout suggestions approach: Match the seeded user's email, select suggestions from their fitness goal or recent activity pattern, and explain each recommendation with a matching reason.
 
 ## Test plan
 
